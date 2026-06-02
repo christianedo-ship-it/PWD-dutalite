@@ -1,5 +1,5 @@
 <?php 
-include 'koneksi.php'; // Mengambil koneksi database menggunakan $koneksi
+include 'koneksi.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -155,7 +155,7 @@ include 'koneksi.php'; // Mengambil koneksi database menggunakan $koneksi
             const hasilVolumeOtomatis = document.getElementById("hasilVolumeOtomatis");
             const finalVolume = document.getElementById("finalVolume");
             
-            // Input Identitas Baru
+     
             const buyerName = document.getElementById("buyerName");
             const buyerCompany = document.getElementById("buyerCompany");
             const buyerEmail = document.getElementById("buyerEmail");
@@ -177,9 +177,9 @@ include 'koneksi.php'; // Mengambil koneksi database menggunakan $koneksi
             selectUkuran.addEventListener("change", hitungVolumeOtomatis);
             calcJumlahBata.addEventListener("input", hitungVolumeOtomatis);
 
-            // Handler Aksi Klik Kirim Pesanan ke WhatsApp
+            
             btnWhatsApp.addEventListener("click", function() {
-                // Validasi data input wajib
+              
                 if (!buyerName.value.trim()) {
                     alert("Silakan masukkan Nama Anda terlebih dahulu.");
                     buyerName.focus();
@@ -196,26 +196,24 @@ include 'koneksi.php'; // Mengambil koneksi database menggunakan $koneksi
                     return;
                 }
 
-                // Ambil teks nama ukuran terpilih
+   
                 const selectedOption = selectUkuran.options[selectUkuran.selectedIndex];
                 const namaUkuran = selectedOption.value !== "0" ? selectedOption.getAttribute("data-nama") : "Belum ditentukan";
 
-                // Ambil data dari form
+
                 const nama = buyerName.value.trim();
                 const perusahaan = buyerCompany.value.trim() ? buyerCompany.value.trim() : "-";
                 const email = buyerEmail.value.trim();
                 const volumeFix = finalVolume.value;
 
-                // Nomor WhatsApp Tujuan Duta Lite (Sesuai gambar +62 813-5124-9935)
+  
                 const nomorWA = "6281351249935";
 
-                // Format teks persis seperti template pesan sistem interaktif
+  
                 const teksPesan = `Halo Duta Lite, saya ingin menghubungi Anda. Nama: ${nama} Perusahaan: ${perusahaan} Email: ${email} Pesan: Saya ingin memesan Bata Ringan AAC ukuran ${namaUkuran} dengan total volume ${volumeFix} Kubik.`;
 
-                // Encode teks agar aman masuk url link internet
                 const urlWhatsApp = `https://api.whatsapp.com/send?phone=${nomorWA}&text=${encodeURIComponent(teksPesan)}`;
 
-                // Buka tab baru menuju WhatsApp
                 window.open(urlWhatsApp, '_blank');
             });
         });
