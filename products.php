@@ -23,7 +23,7 @@ include 'header.php';
 
         <section class="product-list-container">
             <?php
-            $query = "SELECT * FROM products";
+            $query = "SELECT * FROM products ORDER BY id ASC";
             $hasil = mysqli_query($koneksi, $query);
             $no = 0; 
 
