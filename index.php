@@ -1,5 +1,5 @@
 <?php 
-include 'koneksi.php'; 
+include 'koneksi.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,24 +8,15 @@ include 'koneksi.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duta Lite - Bata Ringan AAC</title>
-    <link rel="stylesheet" href="styles/stylehome.css?v=1.4">
+    <link rel="stylesheet" href="styles/style.css?v=1.4">
 </head>
 <body>
 
-    <header>
-        <a href="index.php" class="logo-text">Duta Lite</a>
-        <div class="header-right">
-            <nav>
-                <ul>
-                    <li><a href="about.php">ABOUT</a></li>
-                    <li><a href="products.php">PRODUCTS</a></li>
-                </ul>
-            </nav>
-            <a href="about.php#contact-us" class="contact-btn">CONTACT</a>
-        </div>
-    </header>
+<?php
+include 'header.php';
+?>
 
-    <main>
+<main>
 <div class="hero-section">
     <h1 class="hero-stock-text">
         <span class="hero-brand">Duta Lite</span>
@@ -106,17 +97,9 @@ include 'koneksi.php';
         </section>
     </main>
 
-    <footer>
-        <a href="index.php" class="footer-logo-text">Duta Lite</a>
-        <nav>
-            <ul class="footer-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About</a></li>
-            </ul>
-        </nav>
-        <p class="copyright">© 2026 Duta Lite. All rights reserved.</p>
-    </footer>
+<?php
+include 'footer.php';
+?>
 
     <script src="js/kalkulator.js"></script>
 </body>

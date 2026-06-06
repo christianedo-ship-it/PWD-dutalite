@@ -1,11 +1,10 @@
 <?php 
-include 'koneksi.php'; // Mengambil file koneksi
+include 'koneksi.php';
 
 $pesan_sukses = "";
 $pesan_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Memastikan menggunakan $koneksi agar tidak memicu Undefined Variable
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
     $perusahaan = mysqli_real_escape_string($koneksi, $_POST['perusahaan']);
     $email = mysqli_real_escape_string($koneksi, $_POST['email']);
@@ -26,22 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duta Lite - About Us</title>
-    <link rel="stylesheet" href="styles/styleabout.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
-    <header>
-        <a href="index.php" class="logo-text">Duta Lite</a>
-        <div class="header-right">
-            <nav>
-                <ul>
-                    <li><a href="about.php">ABOUT</a></li>
-                    <li><a href="products.php">PRODUCTS</a></li>
-                </ul>
-            </nav>
-            <a href="about.php#contact-us" class="contact-btn">CONTACT</a>
-        </div>
-    </header>
+<?php
+include 'header.php';
+?>
 
     <main class="content-container">
 
@@ -143,19 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </main>
 
-    <footer>
-        <a href="index.php" class="footer-logo-text">Duta Lite</a>
-        <nav>
-            <ul class="footer-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About</a></li>
-            </ul>
-        </nav>
-        <p class="copyright">
-            &copy; 2026 Duta Lite. All rights reserved.
-        </p>
-    </footer>
+<?php
+include 'footer.php';
+?>
 
     <script src="js/form.js"></script>
 </body>
