@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 06, 2026 at 02:38 PM
+-- Generation Time: Jun 07, 2026 at 02:04 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -75,6 +75,25 @@ INSERT INTO `products` (`id`, `nama_produk`, `ukuran`, `harga`, `deskripsi`, `ga
 (3, '12.5cm', '12,5 x 60 x 20 cm', 0.00, '0,015 m³', '3.jpeg', '2026-06-02 09:54:20'),
 (4, '15cm', '15 x 60 x 20 cm', 0.00, '0,018 m³', '4.jpeg', '2026-06-02 09:54:20');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b');
+
 --
 -- Indexes for dumped tables
 --
@@ -98,6 +117,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -118,6 +143,12 @@ ALTER TABLE `kontak`
 --
 ALTER TABLE `products`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
