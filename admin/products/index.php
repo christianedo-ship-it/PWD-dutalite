@@ -1,17 +1,14 @@
 <?php
 include "../security.php";
 include "../../koneksi.php";
-
 $sql = "select * from products";
 $query = mysqli_query($koneksi, $sql);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Duta Lite Admin - Manajemen Products</title>
 </head>
-
 <a href="../dashboard.php">Kembali ke Dashboard</a> |
 <a href="tambah.php">Tambah Products</a>
 <br><br>
@@ -44,7 +41,8 @@ $query = mysqli_query($koneksi, $sql);
             <td><?= $gambar ?></td>
             <td>
             <a href="edit.php?id=<?= $id; ?>">Edit</a> |
-            <a href="hapus.php?id=<?= $id; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+            <a href="hapus.php?id=<?= $id; ?>" onclick="return 
+                confirm('Yakin ingin menghapus data ini?')">Hapus</a>
             </td>
         </tr>
         <?php
