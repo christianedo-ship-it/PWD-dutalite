@@ -1,7 +1,6 @@
 <?php
 include "security.php";
 include "../koneksi.php";
-
 echo "welcome, ".$username;
 ?>
 <!DOCTYPE html>
