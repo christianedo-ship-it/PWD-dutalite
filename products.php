@@ -10,7 +10,6 @@ include 'koneksi.php';
     <link rel="stylesheet" href="styles/style.css?v=1.3">
 </head>
 <body>
-
 <?php
 include 'header.php';
 ?>
@@ -20,13 +19,11 @@ include 'header.php';
             <h1>PRODUCTS</h1>
             <p>Pilihan Ukuran Produk</p>
         </section>
-
         <section class="product-list-container">
             <?php
             $query = "SELECT * FROM products ORDER BY id ASC";
             $hasil = mysqli_query($koneksi, $query);
             $no = 0; 
-
             while($baris = mysqli_fetch_assoc($hasil)) {
                 $class_reverse = ($no % 2 == 1) ? ' reverse' : '';
                 
@@ -69,7 +66,6 @@ include 'header.php';
                                 <span class="input-hint">Pilih tipe ukuran yang ingin Anda pesan</span>
                             </div>
                         </div>
-
                         <div class="step-card">
                             <div class="step-number">2</div>
                             <h3>Kalkulator Pembantu (Opsional)</h3>
@@ -80,9 +76,7 @@ include 'header.php';
                                 <span class="input-hint">Isi jika Anda ingin menghitung konversi ke kubik</span>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="order-results-side">
                         
                         <div class="step-card result-card-highlight">
@@ -118,7 +112,6 @@ include 'header.php';
 
                             <button type="button" id="btnWhatsApp" class="checkout-btn">Kirim Pesanan ke WhatsApp</button>
                         </div>
-
                     </div>
 
                 </div>
@@ -130,7 +123,6 @@ include 'header.php';
 <?php
 include 'footer.php';
 ?>
-
     <script src="js/pemesanan.js"></script>
 </body>
 </html>
