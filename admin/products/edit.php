@@ -1,14 +1,12 @@
 <?php
 include "../security.php";
 include "../../koneksi.php";
-
 $id = $_GET['id'] ?? '';
 
 if ($id == '') {
     header("Location: index.php");
     exit;
 }
-
 $sql = "select * from products where id='$id'";
 $query = mysqli_query($koneksi, $sql);
 $data = mysqli_fetch_assoc($query);
@@ -18,7 +16,6 @@ if (!$data) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +26,7 @@ if (!$data) {
 <h1>Edit Products</h1>
 
 <a href="index.php">Kembali</a>
-
 <br><br>
-
 <form method="POST" action="ubah.php">
     <input type="hidden" name="id" value="<?= $data['id']; ?>">
 
