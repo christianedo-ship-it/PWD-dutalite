@@ -22,7 +22,7 @@ if(isset($_POST['kirim'])){
 
     $ukuran_bata = $data['ukuran'];
 
-    $sql = "INSERT INTO purchases
+    $sql = "INSERT INTO pesanan
     (
         product_id,
         ukuran_bata,
