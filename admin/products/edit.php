@@ -38,6 +38,10 @@ if (!$data) {
     <input type="text" name="ukuran" value="<?= htmlspecialchars($data['ukuran']); ?>">
     <br><br>
 
+    <label>Harga</label><br>
+    <input type="text" name="harga" value="<?= htmlspecialchars($data['harga']); ?>">
+    <br><br>
+
     <label>Deskripsi</label><br>
     <textarea name="deskripsi" rows="5" cols="40"><?= htmlspecialchars($data['deskripsi']); ?></textarea>
     <br><br>

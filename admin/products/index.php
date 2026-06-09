@@ -18,6 +18,7 @@ $query = mysqli_query($koneksi, $sql);
         <th>No</th>
         <th>Nama Produk</th>
         <th>Ukuran</th>
+        <th>Harga</th>
         <th>Deskripsi</th>
         <th>Gambar</th>
         <th></th>
@@ -29,6 +30,7 @@ $query = mysqli_query($koneksi, $sql);
         while($result = mysqli_fetch_array($query)){
             $nama_produk = $result['nama_produk'];
             $ukuran = $result['ukuran'];
+            $harga = $result['harga'];
             $deskripsi = $result['deskripsi'];
             $gambar = $result['gambar'];
             $id = $result['id'];
@@ -37,6 +39,7 @@ $query = mysqli_query($koneksi, $sql);
             <td><?= $no ?></td>
             <td><?= $nama_produk ?></td>
             <td><?= $ukuran ?></td>
+            <td><?= $harga ?></td>
             <td><?= $deskripsi ?></td>
             <td><?= $gambar ?></td>
             <td>
