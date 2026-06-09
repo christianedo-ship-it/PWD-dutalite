@@ -104,7 +104,3 @@ include 'footer.php';
     <script src="js/kalkulator.js"></script>
 </body>
 </html>
-
-<?php include "frm_pembelian.php";?>
-                    </body>
-                    </html>
