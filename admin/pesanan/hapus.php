@@ -7,7 +7,7 @@ if ($id == '') {
     header("Location: index.php");
     exit;
 }
-$sql = "delete from purchases where id='$id'";
+$sql = "delete from pesanan where id='$id'";
 $query = mysqli_query($koneksi, $sql);
 header("Location: index.php");
 exit;

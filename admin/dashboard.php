@@ -13,6 +13,6 @@ echo "welcome, ".$username;
 <br>
 <a href="products/index.php">manajemen produk</a>
 <br>
-<a href="purchases/index.php">manajemen form</a>
+<a href="pesanan/index.php">manajemen form</a>
 <br>
 <a href="logout.php">logout</a>

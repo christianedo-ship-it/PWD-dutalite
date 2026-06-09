@@ -2,11 +2,11 @@
 
 include "../../koneksi.php";
 
-$sql = "SELECT purchases.*, products.nama_produk
-FROM purchases
+$sql = "SELECT pesanan.*, products.nama_produk
+FROM pesanan
 JOIN products
-ON purchases.product_id = products.id
-ORDER BY purchases.id DESC";
+ON pesanan.product_id = products.id
+ORDER BY pesanan.id DESC";
 
 $query = mysqli_query($koneksi, $sql);
 
@@ -17,7 +17,7 @@ $query = mysqli_query($koneksi, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Purchases</title>
+    <title>Management Pesanan</title>
 
     <style>
 
@@ -65,6 +65,20 @@ $query = mysqli_query($koneksi, $sql);
             border-radius:5px;
         }
 
+
+        .status-link {
+    font-size: 12px;
+    color: blue;
+    text-decoration: none;
+}
+.status-link:hover {
+    text-decoration: underline;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
     </style>
 
 </head>
@@ -72,24 +86,23 @@ $query = mysqli_query($koneksi, $sql);
 
 <div class="container">
 
-    <h1>Management Purchases</h1>
+    <h1>Management Pesanan</h1>
 
     <table>
 
-        <tr>
-
-            <th>No</th>
-            <th>Produk</th>
-            <th>Ukuran Bata</th>
-            <th>Jumlah Bata</th>
-            <th>Nama Pemesan</th>
-            <th>Nama Toko</th>
-            <th>Email</th>
-            <th>Jumlah Pesanan</th>
-            <th>Tanggal</th>
-            <th>Aksi</th>
-
-        </tr>
+  <tr>
+    <th>No</th>
+    <th>Produk</th>
+    <th>Ukuran</th>
+    <th>Jumlah</th>
+    <th>Pemesan</th>
+    <th>Toko</th>
+    <th>Email</th>
+    <th>Pesanan</th>
+    <th>Tanggal</th>    
+    <th>Status</th> 
+    <th>Aksi</th>
+</tr>
 
         <?php
 
@@ -119,17 +132,31 @@ $query = mysqli_query($koneksi, $sql);
 
             <td><?= $result['created_at'] ?></td>
 
-            <td>
+              <td>
+    <?php
+    $color = "black";
+    if ($result['status'] == 'diproses') $color = "orange";
+    elseif ($result['status'] == 'selesai') $color = "green";
+    elseif ($result['status'] == 'dibatalkan') $color = "red";
+    ?>
+    
+    <strong style="color: <?= $color ?>;"><?= ucfirst($result['status']) ?></strong>
+    
+    <div style="margin-top: 5px; font-size: 0.85em;">
+        <a href="status.php?id=<?= $result['id'] ?>&status=pending">Pending</a> |
+        <a href="status.php?id=<?= $result['id'] ?>&status=diproses">Proses</a> |
+        <a href="status.php?id=<?= $result['id'] ?>&status=selesai">Selesai</a> |
+        <a href="status.php?id=<?= $result['id'] ?>&status=dibatalkan">Batal</a>
+    </div>
+</td>
+                </td>
 
-                <a
-                    class="hapus"
-                    href="hapus.php?id=<?= $result['id'] ?>"
-                    onclick="return confirm('Yakin ingin hapus data?')"
-                >
-                    Hapus
-                </a>
-
+               <td>
+                <a class="hapus" href="hapus.php?id=<?= $result['id'] ?>" onclick="return confirm('Yakin ingin hapus data?')">Hapus</a>
             </td>
+        </tr>
+
+         <td>
 
         </tr>
 
