@@ -7,11 +7,12 @@ if (isset($_POST['simpan'])) {
     $ukuran = trim($_POST['ukuran']);
     $deskripsi = trim($_POST['deskripsi']);
     $gambar = trim($_POST['gambar']);
+    $harga = trim($_POST['harga']);
 
-    if ($nama_produk == '' || $ukuran == '' || $deskripsi == '' || $gambar == '') {
+    if ($nama_produk == '' || $ukuran == '' || $deskripsi == '' || $gambar == '' || $harga == '') {
         $error = "Semua field wajib diisi dengan benar.";
     } else {
-        $sql = "insert into products (nama_produk, ukuran, deskripsi, gambar) values('$nama_produk', '$ukuran', '$deskripsi', '$gambar')";
+        $sql = "insert into products (nama_produk, ukuran, deskripsi, gambar, harga) values('$nama_produk', '$ukuran', '$deskripsi', '$gambar', '$harga')";
         $query = mysqli_query($koneksi, $sql);
 
         if ($query) {
@@ -48,6 +49,10 @@ if (isset($_POST['simpan'])) {
 
     <label>Ukuran</label><br>
     <input type="text" name="ukuran">
+    <br><br>
+
+    <label>Harga</label><br> 
+    <input type="text" name="harga">
     <br><br>
 
     <label>Deskripsi</label><br>
