@@ -48,7 +48,7 @@ include 'header.php';
                 </p>
             </div>
             <div class="about-image">
-                <img src="assets/heroimage.jpeg" alt="Bata Ringan AAC">
+                <img src="assets/about.jpeg" alt="Bata Ringan AAC">
             </div>
         </section>
 
