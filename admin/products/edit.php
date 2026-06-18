@@ -31,23 +31,23 @@ if (!$data) {
     <input type="hidden" name="id" value="<?= $data['id']; ?>">
 
     <label>Nama Produk</label><br>
-    <input type="text" name="nama_produk" value="<?= htmlspecialchars($data['nama_produk']); ?>">
+    <input type="text" name="nama_produk" value="<?= htmlspecialchars($data['product_name']); ?>">
     <br><br>
 
     <label>Ukuran</label><br>
-    <input type="text" name="ukuran" value="<?= htmlspecialchars($data['ukuran']); ?>">
+    <input type="text" name="ukuran" value="<?= htmlspecialchars($data['product_size']); ?>">
     <br><br>
 
     <label>Harga</label><br>
-    <input type="text" name="harga" value="<?= htmlspecialchars($data['harga']); ?>">
+    <input type="text" name="harga" value="<?= htmlspecialchars($data['price']); ?>">
     <br><br>
 
     <label>Deskripsi</label><br>
-    <textarea name="deskripsi" rows="5" cols="40"><?= htmlspecialchars($data['deskripsi']); ?></textarea>
+    <textarea name="deskripsi" rows="5" cols="40"><?= htmlspecialchars($data['description']); ?></textarea>
     <br><br>
 
     <label>Gambar</label><br>
-    <input type="text" name="gambar" value="<?= htmlspecialchars($data['gambar']); ?>">
+    <input type="text" name="gambar" value="<?= htmlspecialchars($data['image']); ?>">
     <br><br>
 
     <button type="submit" name="ubah">Ubah</button>

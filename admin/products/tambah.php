@@ -3,16 +3,16 @@ include "../security.php";
 include "../../koneksi.php";
 
 if (isset($_POST['simpan'])) {
-    $nama_produk = trim($_POST['nama_produk']);
-    $ukuran = trim($_POST['ukuran']);
-    $deskripsi = trim($_POST['deskripsi']);
-    $gambar = trim($_POST['gambar']);
-    $harga = trim($_POST['harga']);
+    $product_name = trim($_POST['nama_produk']);
+    $product_size = trim($_POST['ukuran']);
+    $description = trim($_POST['deskripsi']);
+    $image = trim($_POST['gambar']);
+    $price = trim($_POST['harga']);
 
-    if ($nama_produk == '' || $ukuran == '' || $deskripsi == '' || $gambar == '' || $harga == '') {
+    if ($product_name == '' || $product_size == '' || $description == '' || $image == '' || $price == '') {
         $error = "Semua field wajib diisi dengan benar.";
     } else {
-        $sql = "insert into products (nama_produk, ukuran, deskripsi, gambar, harga) values('$nama_produk', '$ukuran', '$deskripsi', '$gambar', '$harga')";
+        $sql = "insert into products (product_name, product_size, description, image, price) values('$nama_produk', '$ukuran', '$deskripsi', '$gambar', '$harga')";
         $query = mysqli_query($koneksi, $sql);
 
         if ($query) {

@@ -2,11 +2,11 @@
 
 include "../../koneksi.php";
 
-$sql = "SELECT pesanan.*, products.nama_produk
-FROM pesanan
+$sql = "SELECT orders.*, products.product_name
+FROM orders
 JOIN products
-ON pesanan.product_id = products.id
-ORDER BY pesanan.id DESC";
+ON orders.product_id = products.id
+ORDER BY orders.id DESC";
 
 $query = mysqli_query($koneksi, $sql);
 
@@ -17,7 +17,8 @@ $query = mysqli_query($koneksi, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Pesanan</title>
+    <title>Duta Lite - Management Pesanan</title>
+    <a href="../dashboard.php">Kembali ke Dashboard</a> |
 
     <style>
 
@@ -116,19 +117,19 @@ tr:hover {
 
             <td><?= $no++ ?></td>
 
-            <td><?= $result['nama_produk'] ?></td>
+            <td><?= $result['product_name'] ?></td>
 
-            <td><?= $result['ukuran_bata'] ?></td>
+            <td><?= $result['size'] ?></td>
 
-            <td><?= $result['jumlah_bata'] ?></td>
+            <td><?= $result['product_quantity'] ?></td>
 
-            <td><?= $result['nama_pemesan'] ?></td>
+            <td><?= $result['customer_name'] ?></td>
 
-            <td><?= $result['nama_toko'] ?></td>
+            <td><?= $result['company_name'] ?></td>
 
             <td><?= $result['email'] ?></td>
 
-            <td><?= $result['jumlah_pesanan'] ?> Kubik</td>
+            <td><?= $result['order_quantity'] ?> Kubik</td>
 
             <td><?= $result['created_at'] ?></td>
 
