@@ -3,16 +3,16 @@ include "../security.php";
 include "../../koneksi.php";
 
 if (isset($_POST['simpan'])) {
-    $product_name = trim($_POST['nama_produk']);
-    $product_size = trim($_POST['ukuran']);
-    $description = trim($_POST['deskripsi']);
-    $image = trim($_POST['gambar']);
-    $price = trim($_POST['harga']);
+    $product_name = trim($_POST['product_name']);
+    $product_size = trim($_POST['product_size']);
+    $description = trim($_POST['description']);
+    $image = trim($_POST['image']);
+    $price = trim($_POST['price']);
 
     if ($product_name == '' || $product_size == '' || $description == '' || $image == '' || $price == '') {
         $error = "Semua field wajib diisi dengan benar.";
     } else {
-        $sql = "insert into products (product_name, product_size, description, image, price) values('$nama_produk', '$ukuran', '$deskripsi', '$gambar', '$harga')";
+        $sql = "insert into products (product_name, product_size, description, image, price) values('$product_name', '$product_size', '$description', '$image', '$price')";
         $query = mysqli_query($koneksi, $sql);
 
         if ($query) {
@@ -26,45 +26,88 @@ if (isset($_POST['simpan'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duta Lite Admin - Tambah Products</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 
-<h1>Tambah Products</h1>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Duta Lite</h2>
+            <p>Panel Admin</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../dashboard.php">📊 Dashboard</a></li>
+            <li><a href="index.php" class="active">📦 Manajemen Produk</a></li>
+            <li><a href="../pesanan/index.php">📝 Manajemen Pesanan</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="../logout.php" class="logout-btn">🚪 Logout</a>
+        </div>
+    </aside>
 
-<a href="index.php">Kembali</a>
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h3>Tambah Produk Baru</h3>
+            </div>
+            <div class="header-right">
+                <span>Welcome, <strong><?= htmlspecialchars($username ?? 'Admin'); ?></strong></span>
+            </div>
+        </header>
 
-<br><br>
+        <div class="content-body">
+            
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Form Input Produk</h2>
+                    <a href="index.php" class="btn btn-secondary">⬅ Kembali</a>
+                </div>
 
-<?php if (isset($error)) : ?>
-    <p style="color:red;"><?= $error; ?></p>
-<?php endif; ?>
+                <?php if (isset($error)) : ?>
+                    <div class="alert alert-danger">
+                        ⚠ <?= $error; ?>
+                    </div>
+                <?php endif; ?>
 
-<form method="POST">
-    <label>Nama Produk</label><br>
-    <input type="text" name="nama_produk">
-    <br><br>
+                <form method="POST" class="admin-form">
+                    <div class="form-group">
+                        <label>Nama Produk</label>
+                        <input type="text" name="product_name" class="form-control" placeholder="Contoh: Bata Ringan AAC" required>
+                    </div>
 
-    <label>Ukuran</label><br>
-    <input type="text" name="ukuran">
-    <br><br>
+                    <div class="form-group">
+                        <label>Ukuran</label>
+                        <input type="text" name="product_size" class="form-control" placeholder="Contoh: 10 x 60 x 20 cm" required>
+                    </div>
 
-    <label>Harga</label><br> 
-    <input type="text" name="harga">
-    <br><br>
+                    <div class="form-group">
+                        <label>Harga (Rp)</label>
+                        <input type="number" name="price" class="form-control" placeholder="Contoh: 850000" required>
+                    </div>
 
-    <label>Deskripsi</label><br>
-    <textarea name="deskripsi" rows="5" cols="40"></textarea>
-    <br><br>
+                    <div class="form-group">
+                        <label>Deskripsi / Volume</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Masukkan deskripsi..." required></textarea>
+                    </div>
 
-    <label>Gambar</label><br>
-    <input type="text" name="gambar">
-    <br><br>
+                    <div class="form-group">
+                        <label>Nama File Gambar</label>
+                        <input type="text" name="image" class="form-control" placeholder="Contoh: 1.jpeg" required>
+                    </div>
 
-    <button type="submit" name="simpan">Simpan</button>
-</form>
+                    <div class="form-action">
+                        <button type="submit" name="simpan" class="btn btn-primary">💾 Simpan Data</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
 
 </body>
 </html>

@@ -1,115 +1,98 @@
 <?php
 include "../security.php";
 include "../../koneksi.php";
-$sql = "select * from products";
+
+$sql = "SELECT * FROM products ORDER BY id ASC";
 $query = mysqli_query($koneksi, $sql);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Duta Lite Admin - Manajemen Products</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duta Lite Admin - Manajemen Produk</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
-    <style>
-        body{
-            font-family: Arial;
-            background:#f5f5f5;
-        }
+<body>
 
-        .container{
-            width:90%;
-            margin:auto;
-            margin-top:40px;
-        }
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Duta Lite</h2>
+            <p>Panel Admin</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../dashboard.php">📊 Dashboard</a></li>
+            <li><a href="index.php" class="active">📦 Manajemen Produk</a></li>
+            <li><a href="../pesanan/index.php">📝 Manajemen Pesanan</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="../logout.php" class="logout-btn">🚪 Logout</a>
+        </div>
+    </aside>
 
-        h1{
-            margin-bottom:20px;
-        }
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h3>Manajemen Produk</h3>
+            </div>
+            <div class="header-right">
+                <span>Welcome, <strong><?= htmlspecialchars($username ?? 'Admin'); ?></strong></span>
+            </div>
+        </header>
 
-        table{
-            width:100%;
-            border-collapse:collapse;
-            background:white;
-        }
+        <div class="content-body">
+            
+            <div class="table-header-action">
+                <h2>Daftar Produk (Bata Ringan)</h2>
+                <a href="tambah.php" class="btn btn-primary">+ Tambah Produk</a>
+            </div>
 
-        table th{
-            background:black;
-            color:white;
-            padding:12px;
-        }
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="15%">Nama Produk</th>
+                            <th width="15%">Ukuran</th>
+                            <th width="15%">Harga</th>
+                            <th width="30%">Deskripsi</th>
+                            <th width="10%">Gambar</th>
+                            <th width="10%" style="text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $no = 1;
+                            while($result = mysqli_fetch_array($query)){
+                                $product_name = $result['product_name'];
+                                $product_size = $result['product_size'];
+                                $price        = $result['price'];
+                                $description  = $result['description'];
+                                $image        = $result['image'];
+                                $id           = $result['id'];
+                        ?>
+                        <tr>
+                            <td><?= $no ?></td>
+                            <td><?= htmlspecialchars($product_name) ?></td>
+                            <td><?= htmlspecialchars($product_size) ?></td>
+                            <td>Rp <?= number_format((float)$price, 0, ',', '.') ?></td>
+                            <td><?= htmlspecialchars($description) ?></td>
+                            <td><?= htmlspecialchars($image) ?></td>
+                            <td class="action-buttons">
+                                <a href="edit.php?id=<?= $id; ?>" class="btn-sm btn-edit">Edit</a>
+                                <a href="hapus.php?id=<?= $id; ?>" class="btn-sm btn-delete" onclick="return confirm('Yakin ingin menghapus ukuran <?= $ukuran ?>?')">Hapus</a>
+                            </td>
+                        </tr>
+                        <?php
+                            $no++;
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
 
-        table td{
-            padding:12px;
-            border:1px solid #ddd;
-        }
+        </div>
+    </main>
 
-        tr:nth-child(even){
-            background:#f9f9f9;
-        }
-
-        .hapus{
-            background:red;
-            color:white;
-            padding:8px 12px;
-            text-decoration:none;
-            border-radius:5px;
-        }
-
-
-        .status-link {
-            font-size: 12px;
-            color: blue;
-            text-decoration: none;
-        }
-        .status-link:hover {
-            text-decoration: underline;
-        }
-
-        tr:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
-<a href="../dashboard.php">Kembali ke Dashboard</a> |
-<a href="tambah.php">Tambah Products</a>
-<br><br>
-<table border="1">
-    <thead>
-        <tr>
-        <th>No</th>
-        <th>Nama Produk</th>
-        <th>Ukuran</th>
-        <th>Harga</th>
-        <th>Deskripsi</th>
-        <th>Gambar</th>
-        <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            $no = 1;
-        while($result = mysqli_fetch_array($query)){
-            $product_name = $result['product_name'];
-            $product_size = $result['product_size'];
-            $price = $result['price'];
-            $description = $result['description'];
-            $image = $result['image'];
-            $id = $result['id'];
-        ?>
-        <tr>
-            <td><?= $no ?></td>
-            <td><?= $product_name ?></td>
-            <td><?= $product_size ?></td>
-            <td><?= $price ?></td>
-            <td><?= $description ?></td>
-            <td><?= $image ?></td>
-            <td>
-            <a href="edit.php?id=<?= $id; ?>">Edit</a> |
-            <a href="hapus.php?id=<?= $id; ?>" onclick="return 
-                confirm('Yakin ingin menghapus data ini?')">Hapus</a>
-            </td>
-        </tr>
-        <?php
-            $no++;
-        }
-        ?>
-    </tbody>
-</table>
+</body>
+</html>
