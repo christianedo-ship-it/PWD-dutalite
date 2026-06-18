@@ -38,7 +38,7 @@ $query = mysqli_query($koneksi, $sql);
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">
-                <h3>Manajemen Pesanan Masuk</h3>
+                <h3>Manajemen Pesanan</h3>
             </div>
             <div class="header-right">
                 <span>Welcome, <strong><?= htmlspecialchars($username ?? 'Admin'); ?></strong></span>
@@ -48,7 +48,7 @@ $query = mysqli_query($koneksi, $sql);
         <div class="content-body">
             
             <div class="table-header-action">
-                <h2>Daftar Form Pesanan & Kontak</h2>
+                <h2>Daftar Form Pesanan</h2>
             </div>
 
             <div class="table-container table-responsive">
