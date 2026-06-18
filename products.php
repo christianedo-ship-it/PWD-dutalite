@@ -39,12 +39,12 @@ include 'header.php';
             echo '<div class="product-row' . $class_reverse . '">';
 
             echo '    <div class="product-text">';
-            echo '        <h2>' . htmlspecialchars($baris['ukuran']) . '</h2>';
-            echo '        <p class="product-desc">Volume ' . htmlspecialchars($baris['deskripsi']) . '</p>';
+            echo '        <h2>' . htmlspecialchars($baris['product_size']) . '</h2>';
+            echo '        <p class="product-desc">Volume ' . htmlspecialchars($baris['description']) . '</p>';
             echo '    </div>';
 
             echo '    <div class="product-img">';
-            echo '        <img src="assets/' . htmlspecialchars($baris['gambar']) . '" alt="Bata ' . htmlspecialchars($baris['nama_produk']) . '">';
+            echo '        <img src="assets/' . htmlspecialchars($baris['image']) . '" alt="Bata ' . htmlspecialchars($baris['product_name']) . '">';
             echo '    </div>';
 
             echo '</div>';
