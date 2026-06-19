@@ -1,6 +1,6 @@
 <?php
-include "../security.php";
-require "../../koneksi.php";
+include "../../security.php";
+require "../../../koneksi.php";
 
 if (isset($_POST['ubah'])) {
     $id = $_POST['id'];

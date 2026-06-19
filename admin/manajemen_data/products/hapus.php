@@ -1,6 +1,6 @@
 <?php
-include "../security.php";
-include "../../koneksi.php";
+include "../../security.php";
+include "../../../koneksi.php";
 
 $id = $_GET['id'] ?? '';
 if ($id == '') {
