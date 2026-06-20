@@ -6,20 +6,50 @@ if (isset($_POST['simpan'])) {
     $product_name = trim($_POST['product_name']);
     $product_size = trim($_POST['product_size']);
     $description = trim($_POST['description']);
-    $image = trim($_POST['image']);
     $price = trim($_POST['price']);
+    $image = ""; 
 
-    if ($product_name == '' || $product_size == '' || $description == '' || $image == '' || $price == '') {
-        $error = "Semua field wajib diisi dengan benar.";
-    } else {
-        $sql = "insert into products (product_name, product_size, description, image, price) values('$product_name', '$product_size', '$description', '$image', '$price')";
-        $query = mysqli_query($koneksi, $sql);
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+        $file_name = $_FILES['image']['name'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+        $file_size = $_FILES['image']['size'];
 
-        if ($query) {
-            header("Location: index.php");
-            exit;
+        $allowed_extensions = array("jpg", "jpeg", "png");
+        $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+        if (in_array($file_extension, $allowed_extensions)) {
+            if ($file_size <= 2000000) { 
+                $new_file_name = str_replace(' ', '_', $product_name) . "_" . time() . "." . $file_extension;
+                $upload_path = "../../../assets/" . $new_file_name;
+
+                if (move_uploaded_file($file_tmp, $upload_path)) {
+                    $image = $new_file_name;
+                } else {
+                    $error = "Gagal mengupload gambar ke folder assets.";
+                }
+            } else {
+                $error = "Ukuran gambar terlalu besar! Maksimal 2MB.";
+            }
         } else {
-            $error = "Data gagal disimpan.";
+            $error = "Format file tidak didukung! Gunakan JPG, JPEG, PNG, atau WEBP.";
+        }
+    } else {
+        $error = "Gambar produk wajib diupload.";
+    }
+
+    if (!isset($error)) {
+        if ($product_name == '' || $product_size == '' || $description == '' || $image == '' || $price == '') {
+            $error = "Semua field wajib diisi dengan benar.";
+        } else {
+            $sql = "INSERT INTO products (product_name, product_size, description, image, price) VALUES('$product_name', '$product_size', '$description', '$image', '$price')";
+            $query = mysqli_query($koneksi, $sql);
+
+            if ($query) {
+                header("Location: index.php");
+                exit;
+            } else {
+                $error = "Data gagal disimpan ke database.";
+            }
         }
     }
 }
@@ -91,7 +121,7 @@ if (isset($_POST['simpan'])) {
                     </div>
                 <?php endif; ?>
 
-                <form method="POST" class="admin-form">
+                <form method="POST" class="admin-form" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Produk</label>
                         <input type="text" name="product_name" class="form-control" placeholder="Contoh: Bata Ringan AAC" required>
@@ -113,8 +143,9 @@ if (isset($_POST['simpan'])) {
                     </div>
 
                     <div class="form-group">
-                        <label>Nama File Gambar</label>
-                        <input type="text" name="image" class="form-control" placeholder="Contoh: 1.jpeg" required>
+                        <label>Upload Gambar Produk</label>
+                        <input type="file" name="image" class="form-control" accept="image/*" required>
+                        <small style="color: #7f8c8d; display: block; margin-top: 5px;">*Format: JPG, PNG, JPEG. Maks ukuran: 2MB</small>
                     </div>
 
                     <div class="form-action">

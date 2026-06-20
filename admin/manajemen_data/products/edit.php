@@ -78,9 +78,10 @@ if (!$data) {
                     <a href="index.php" class="btn btn-secondary">⬅ Kembali</a>
                 </div>
 
-                <form method="POST" action="ubah.php" class="admin-form">
+                <form method="POST" action="ubah.php" class="admin-form" enctype="multipart/form-data">
                     
                     <input type="hidden" name="id" value="<?= $data['id']; ?>">
+                    <input type="hidden" name="gambar_lama" value="<?= htmlspecialchars($data['image']); ?>">
 
                     <div class="form-group">
                         <label>Nama Produk</label>
@@ -103,8 +104,18 @@ if (!$data) {
                     </div>
 
                     <div class="form-group">
-                        <label>Nama File Gambar</label>
-                        <input type="text" name="image" class="form-control" value="<?= htmlspecialchars($data['image']); ?>" required>
+                        <label>Gambar Saat Ini</label><br>
+                        <?php if($data['image'] != ""): ?>
+                            <img src="../../../assets/<?= htmlspecialchars($data['image']); ?>" alt="Gambar Produk" style="max-width: 150px; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 10px;">
+                        <?php else: ?>
+                            <p style="color: #7f8c8d; font-size: 0.9rem;">Belum ada gambar</p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ganti Gambar Baru (Opsional)</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                        <small style="color: #7f8c8d; display: block; margin-top: 5px;">*Biarkan kosong jika tidak ingin mengubah gambar.</small>
                     </div>
 
                     <div class="form-action">
