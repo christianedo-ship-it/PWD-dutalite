@@ -1,6 +1,21 @@
 <?php 
 include 'koneksi.php';
 
+$sql_profile = "SELECT * FROM company_profile LIMIT 1";
+$query_profile = mysqli_query($koneksi, $sql_profile);
+$data_profile = mysqli_fetch_assoc($query_profile);
+
+$sql_office = "SELECT * FROM head_office LIMIT 1";
+$query_office = mysqli_query($koneksi, $sql_office);
+$data_office = mysqli_fetch_assoc($query_office);
+
+$sql_vision = "SELECT * FROM vision LIMIT 1";
+$query_vision = mysqli_query($koneksi, $sql_vision);
+$data_vision = mysqli_fetch_assoc($query_vision);
+
+$sql_mission = "SELECT * FROM mission ORDER BY id_mission ASC";
+$query_mission = mysqli_query($koneksi, $sql_mission);
+
 $pesan_sukses = "";
 $pesan_error = "";
 
@@ -25,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duta Lite - About Us</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style.css?v=<?= time(); ?>">
 </head>
 <body>
 
@@ -34,17 +49,12 @@ include 'header.php';
 ?>
 
     <main class="content-container">
-
         <section class="about-section">
             <div class="about-text">
                 <h1>About Us</h1>
                 <h3>Profil Perusahaan</h3>
                 <p>
-                    Kami menjalin kerja sama dengan Dutamix sebagai pelopor beton pertama di Kalimantan Barat.
-                    Dengan pengalaman lebih dari 25 tahun dalam bidang produksi beton ready mix dan produk precast,
-                    Dutamix memiliki kompetensi dan standar kualitas yang tinggi. Melalui kerja sama ini,
-                    kami berkomitmen untuk mendukung kebutuhan proyek Anda dengan menyediakan produk dan layanan
-                    terbaik secara profesional dan terpercaya.
+                    <?= nl2br(htmlspecialchars($data_profile['description'] ?? 'Data profil perusahaan belum tersedia.')); ?>
                 </p>
             </div>
             <div class="about-image">
@@ -53,15 +63,13 @@ include 'header.php';
         </section>
 
         <div class="company-info-wrapper">
-
             <section class="head-office-card">
                 <div class="card-icon">📍</div>
                 <h2>Head Office</h2>
                 <div class="office-details">
-                    <p class="office-building">Graha Kalindo</p>
-                    <p>Jl. Sisingamangaraja No. 88 A-B</p>
-                    <p>Pontianak, Kalimantan Barat</p>
-                    <p class="office-country">Indonesia</p>
+                    <p class="office-building"><?= htmlspecialchars($data_office['name'] ?? 'Nama Gedung / Kantor'); ?></p>
+                    <p><?= nl2br(htmlspecialchars($data_office['location'] ?? 'Alamat kantor belum tersedia.')); ?></p>
+                    <p class="office-country"><?= htmlspecialchars($data_office['country'] ?? 'Indonesia'); ?></p>
                 </div>
             </section>
 
@@ -70,16 +78,25 @@ include 'header.php';
                 
                 <div class="vision-box">
                     <h3>Visi</h3>
-                    <p>Menjadi penyedia bata ringan terpercaya dengan kualitas terbaik dan pelayanan profesional.</p>
+                    <p>
+                        <?= nl2br(htmlspecialchars($data_vision['description'] ?? 'Data visi belum tersedia.')); ?>
+                    </p>
                 </div>
 
                 <div class="mission-box">
                     <h3>Misi</h3>
                     <ul>
-                        <li>Menyediakan produk berkualitas tinggi.</li>
-                        <li>Mengutamakan kepuasan pelanggan.</li>
-                        <li>Mendukung pembangunan berkelanjutan.</li>
-                        <li>Memberikan solusi konstruksi yang efisien.</li>
+                        <?php 
+                        if (mysqli_num_rows($query_mission) > 0) {
+                            while($misi = mysqli_fetch_assoc($query_mission)) { 
+                        ?>
+                            <li><?= htmlspecialchars($misi['description']); ?></li>
+                        <?php 
+                            }
+                        } else {
+                            echo "<li>Data misi belum tersedia.</li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </section>

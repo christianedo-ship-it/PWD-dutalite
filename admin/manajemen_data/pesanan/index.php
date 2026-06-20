@@ -32,9 +32,10 @@ $query = mysqli_query($koneksi, $sql);
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn">📁 Master Data <span class="arrow">▼</span></a>
                 <ul class="dropdown-container">
-                    <li><a href="../../master_data/head_office.php">🏢 Head Office</a></li>
-                    <li><a href="../../master_data/keunggulan.php">⭐ Keunggulan</a></li>
-                    <li><a href="../../master_data/visi_misi.php">🎯 Visi & Misi</a></li>
+                    <li><a href="master_data/profil_lokasi.php">🏢 Profil & Lokasi</a></li>
+                    <li><a href="master_data/visi_misi.php">🎯 Visi & Misi</a></li>
+                    <li><a href="master_data/keunggulan.php">⭐ Keunggulan</a></li>
+                    <li><a href="master_data/purchase_info.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
@@ -81,7 +82,7 @@ $query = mysqli_query($koneksi, $sql);
                             <th>Email</th>
                             <th>Total Volume</th>
                             <th>Tanggal Masuk</th>    
-                            <th>Status</th> 
+                            <th style="text-align: center;">Status</th> 
                             <th style="text-align: center;">Aksi</th>
                         </tr>
                     </thead>
@@ -111,15 +112,21 @@ $query = mysqli_query($koneksi, $sql);
                                 <span class="badge <?= $status_class ?>"><?= ucfirst($result['status']) ?></span>
                                 
                                 <div class="status-links">
-                                    <a href="status.php?id=<?= $result['id'] ?>&status=pending">Pending</a> |
-                                    <a href="status.php?id=<?= $result['id'] ?>&status=diproses">Proses</a> |
-                                    <a href="status.php?id=<?= $result['id'] ?>&status=selesai">Selesai</a> |
-                                    <a href="status.php?id=<?= $result['id'] ?>&status=dibatalkan">Batal</a>
+                                    <a href="status.php?id=<?= $result['id'] ?>&status=pending" onclick="return confirm('Yakin ingin ubah status pesanan <?= $result['customer_name'] ?> menjadi PENDING?')">Pending</a> |
+                                    <a href="status.php?id=<?= $result['id'] ?>&status=diproses" onclick="return confirm('Yakin ingin memproses pesanan <?= $result['customer_name'] ?>?')">Proses</a> |
+                                    <a href="status.php?id=<?= $result['id'] ?>&status=selesai" onclick="return confirm('Yakin ingin menyelesaikan pesanan <?= $result['customer_name'] ?>?')">Selesai</a> |
+                                    <a href="status.php?id=<?= $result['id'] ?>&status=dibatalkan" onclick="return confirm('Yakin ingin membatalkan pesanan <?= $result['customer_name'] ?>?')">Batal</a>
                                 </div>
+
+                                <?php if (!empty($result['updated_by'])): ?>
+                                    <div style="margin-top: 8px; font-size: 0.75rem; color: #7f8c8d; font-style: italic;">
+                                        Diubah oleh: <strong><?= htmlspecialchars($result['updated_by']) ?></strong>
+                                    </div>
+                                <?php endif; ?>
                             </td>
 
                             <td class="action-buttons">
-                                <a href="hapus.php?id=<?= $result['id'] ?>" class="btn-sm btn-delete" onclick="return confirm('Yakin ingin hapus pesanan dari <?= $result['customer_name'] ?>?')">Hapus</a>
+                                <a href="hapus.php?id=<?= $result['id'] ?>" class="btn-sm btn-delete" onclick="return confirm('PERINGATAN! Yakin ingin menghapus pesanan dari <?= $result['customer_name'] ?> secara permanen?')">Hapus</a>
                             </td>
                         </tr>
                         <?php } ?>

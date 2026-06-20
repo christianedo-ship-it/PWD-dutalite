@@ -2,19 +2,22 @@
 include "../../security.php";
 include "../../../koneksi.php";
 
-if (isset($_GET['id']) && isset($_GET['status'])) {
-    $id = $_GET['id'];
-    $status = $_GET['status'];
+$id = $_GET['id'] ?? '';
+$status = $_GET['status'] ?? '';
+$admin_name = $_SESSION['username'] ?? 'Sistem';
 
+if ($id != '' && $status != '') {
+    $sql = "UPDATE orders SET status='$status', updated_by='$admin_name' WHERE id='$id'";
+    $query = mysqli_query($koneksi, $sql);
 
-    $valid_status = ['pending', 'diproses', 'selesai', 'dibatalkan'];
-    
-    if (in_array($status, $valid_status)) {
-        $sql = "UPDATE orders SET status = '$status' WHERE id = '$id'";
-        mysqli_query($koneksi, $sql);
+    if ($query) {
+        header("Location: index.php");
+        exit;
+    } else {
+        echo "<script>alert('Gagal mengubah status pesanan!'); window.location='index.php';</script>";
     }
+} else {
+    header("Location: index.php");
+    exit;
 }
-
-header("Location: index.php");
-exit;
 ?>

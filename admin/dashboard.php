@@ -25,9 +25,10 @@ include "../koneksi.php";
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn">📁 Master Data <span class="arrow">▼</span></a>
                 <ul class="dropdown-container">
-                    <li><a href="master_data/head_office.php">🏢 Head Office</a></li>
-                    <li><a href="master_data/keunggulan.php">⭐ Keunggulan</a></li>
+                    <li><a href="master_data/profil_lokasi.php">🏢 Profil & Lokasi</a></li>
                     <li><a href="master_data/visi_misi.php">🎯 Visi & Misi</a></li>
+                    <li><a href="master_data/keunggulan.php">⭐ Keunggulan</a></li>
+                    <li><a href="master_data/purchase_info.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
@@ -64,19 +65,24 @@ include "../koneksi.php";
             <h2 style="margin-bottom: 15px; color: #2c3e50; font-size: 1.4rem;">📁 Master Data</h2>
             <div class="stats-grid" style="margin-bottom: 40px;">
                 <div class="stat-card">
-                    <h3>Head Office</h3>
-                    <p>Kelola data alamat kantor</p>
-                    <a href="master_data/head_office.php" class="btn">Lihat Data</a>
-                </div>
-                <div class="stat-card">
-                    <h3>Keunggulan</h3>
-                    <p>Kelola poin keunggulan web</p>
-                    <a href="master_data/keunggulan.php" class="btn">Lihat Data</a>
+                    <h3>Profil & Lokasi</h3>
+                    <p>Kelola profil, lokasi cabang & head office</p>
+                    <a href="master_data/profil_lokasi.php" class="btn">Lihat Data</a>
                 </div>
                 <div class="stat-card">
                     <h3>Visi & Misi</h3>
-                    <p>Kelola teks visi dan misi</p>
+                    <p>Kelola visi dan misi</p>
                     <a href="master_data/visi_misi.php" class="btn">Lihat Data</a>
+                </div>
+                <div class="stat-card">
+                    <h3>Keunggulan</h3>
+                    <p>Kelola daftar poin keunggulan</p>
+                    <a href="master_data/keunggulan.php" class="btn">Lihat Data</a>
+                </div>
+                <div class="stat-card">
+                    <h3>Info Pembelian</h3>
+                    <p>Kelola syarat pembelian</p>
+                    <a href="master_data/purchase_info.php" class="btn">Lihat Data</a>
                 </div>
             </div>
 
@@ -89,7 +95,7 @@ include "../koneksi.php";
                 </div>
                 <div class="stat-card">
                     <h3>Pesanan</h3>
-                    <p>Cek form pesanan / kontak</p>
+                    <p>Cek form pesanan / kontak masuk</p>
                     <a href="manajemen_data/pesanan/index.php" class="btn">Lihat Pesanan</a>
                 </div>
             </div>
