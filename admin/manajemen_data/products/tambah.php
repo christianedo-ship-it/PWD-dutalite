@@ -77,10 +77,10 @@ if (isset($_POST['simpan'])) {
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn">📁 Master Data <span class="arrow">▼</span></a>
                 <ul class="dropdown-container">
-                    <li><a href="master_data/profil_lokasi/index.php">🏢 Profil & Lokasi</a></li>
-                    <li><a href="master_data/visi_misi/index.php">🎯 Visi & Misi</a></li>
-                    <li><a href="master_data/keunggulan/index.php">⭐ Keunggulan</a></li>
-                    <li><a href="master_data/info_pembelian/index.php">🛒 Info Pembelian</a></li>
+                    <li><a href="../../master_data/profil_lokasi/index.php">🏢 Profil & Lokasi</a></li>
+                    <li><a href="../../master_data/visi_misi/index.php">🎯 Visi & Misi</a></li>
+                    <li><a href="../../master_data/keunggulan/index.php">⭐ Keunggulan</a></li>
+                    <li><a href="../../master_data/info_pembelian/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 

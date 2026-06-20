@@ -27,18 +27,18 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn active">📁 Master Data <span class="arrow rotate">▼</span></a>
                 <ul class="dropdown-container show">
-                    <li><a href="master_data/profil_lokasi/index.php" class="active">🏢 Profil & Lokasi</a></li>
-                    <li><a href="master_data/visi_misi/index.php">🎯 Visi & Misi</a></li>
-                    <li><a href="master_data/keunggulan/index.php">⭐ Keunggulan</a></li>
-                    <li><a href="master_data/info_pembelian/index.php">🛒 Info Pembelian</a></li>
+                    <li><a href="index.php" class="active">🏢 Profil & Lokasi</a></li>
+                    <li><a href="../visi_misi/index.php">🎯 Visi & Misi</a></li>
+                    <li><a href="../keunggulan/index.php">⭐ Keunggulan</a></li>
+                    <li><a href="../info_pembelian/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn">🗄️ Manajemen Data <span class="arrow">▼</span></a>
                 <ul class="dropdown-container">
-                    <li><a href="index.php">📦 Produk</a></li>
-                    <li><a href="../pesanan/index.php">📝 Pesanan</a></li>
+                    <li><a href="../../manajemen_data/products/index.php">📦 Produk</a></li>
+                    <li><a href="../../manajemen_data/pesanan/index.php">📝 Pesanan</a></li>
                 </ul>
             </li>
         </ul>
@@ -81,6 +81,24 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
                 <button type="submit" name="update" class="btn btn-primary">💾 Simpan Perubahan</button>
             </form>
         </div>
+
+        <script>
+        var dropdowns = document.getElementsByClassName("dropdown-btn");
+        for (var i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].addEventListener("click", function() {
+                var dropdownContent = this.nextElementSibling;
+                var arrow = this.querySelector(".arrow");
+                
+                if (dropdownContent.classList.contains("show")) {
+                    dropdownContent.classList.remove("show");
+                    arrow.classList.remove("rotate");
+                } else {
+                    dropdownContent.classList.add("show");
+                    arrow.classList.add("rotate");
+                }
+            });
+        }
+        </script>
     </main>
 </body>
 </html>

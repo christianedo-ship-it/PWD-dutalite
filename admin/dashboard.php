@@ -31,7 +31,7 @@ include "../koneksi.php";
                     <li><a href="master_data/info_pembelian/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
-
+            
             <li>
                 <a href="javascript:void(0)" class="dropdown-btn">🗄️ Manajemen Data <span class="arrow">▼</span></a>
                 <ul class="dropdown-container">
@@ -61,7 +61,7 @@ include "../koneksi.php";
                 <h1>Selamat Datang, <?= htmlspecialchars($username ?? 'Admin'); ?>! 👋</h1>
                 <p>Ini adalah halaman utama panel kontrol admin Duta Lite. Silakan gunakan menu di sebelah kiri atau menu cepat di bawah untuk mengelola data website.</p>
             </div>
-
+            
             <h2 style="margin-bottom: 15px; color: #2c3e50; font-size: 1.4rem;">📁 Master Data</h2>
             <div class="stats-grid" style="margin-bottom: 40px;">
                 <div class="stat-card">
