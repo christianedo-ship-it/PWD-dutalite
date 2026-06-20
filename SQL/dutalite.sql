@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 20, 2026 at 04:03 PM
+-- Generation Time: Jun 20, 2026 at 04:27 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -89,6 +89,13 @@ CREATE TABLE `location` (
   `id_location` int NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`id_location`, `description`) VALUES
+(1, 'Dapat melayani di area Pontianak, Mempawah, Sui Duri, Singkawang, dan Pemangkat. Untuk lokasi kantornya yang di Pontianak berada di Jl. Arteri Supadio, Raya River, Pontianak, Kubu Raya Regency, West Kalimantan 78391. Kemudian untuk di Singkawang berada di depan Pasir Panjang, Jl. Raya Sedau, Sedau, Kec. Singkawang Sel., Kota Singkawang, Kalimantan Barat.');
 
 -- --------------------------------------------------------
 
@@ -314,7 +321,7 @@ ALTER TABLE `head_office`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `id_location` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_location` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mission`
