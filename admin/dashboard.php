@@ -67,22 +67,22 @@ include "../koneksi.php";
                 <div class="stat-card">
                     <h3>Profil & Lokasi</h3>
                     <p>Kelola profil, lokasi cabang & head office</p>
-                    <a href="master_data/profil_lokasi.php" class="btn">Lihat Data</a>
+                    <a href="master_data/profil_lokasi/index.php" class="btn">Lihat Data</a>
                 </div>
                 <div class="stat-card">
                     <h3>Visi & Misi</h3>
                     <p>Kelola visi dan misi</p>
-                    <a href="master_data/visi_misi.php" class="btn">Lihat Data</a>
+                    <a href="master_data/visi_misi/index.php" class="btn">Lihat Data</a>
                 </div>
                 <div class="stat-card">
                     <h3>Keunggulan</h3>
                     <p>Kelola daftar poin keunggulan</p>
-                    <a href="master_data/keunggulan.php" class="btn">Lihat Data</a>
+                    <a href="master_data/keunggulan/index.php" class="btn">Lihat Data</a>
                 </div>
                 <div class="stat-card">
                     <h3>Info Pembelian</h3>
                     <p>Kelola syarat pembelian</p>
-                    <a href="master_data/purchase_info.php" class="btn">Lihat Data</a>
+                    <a href="master_data/purchase_info/index.php" class="btn">Lihat Data</a>
                 </div>
             </div>
 
