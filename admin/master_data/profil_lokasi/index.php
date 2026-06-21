@@ -30,7 +30,7 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
                     <li><a href="index.php" class="active">🏢 Profil & Lokasi</a></li>
                     <li><a href="../visi_misi/index.php">🎯 Visi & Misi</a></li>
                     <li><a href="../keunggulan/index.php">⭐ Keunggulan</a></li>
-                    <li><a href="../info_pembelian/index.php">🛒 Info Pembelian</a></li>
+                    <li><a href="../purchase_info/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
@@ -49,40 +49,60 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
     </aside>
 
     <main class="main-content">
-        <header class="top-header"><h3>Edit Profil & Lokasi</h3></header>
+        <header class="top-header">
+            <div class="header-left">
+                <h3>Edit Profil & Lokasi</h3>
+            </div>
+            <div class="header-right">
+                <span>Welcome, <strong><?= htmlspecialchars($username ?? 'Admin'); ?></strong></span>
+            </div>
+        </header>
+        
         <div class="content-body">
-            <form action="proses.php" method="POST" class="admin-form">
-                <h3>Profil Perusahaan</h3>
-                <div class="form-group">
-                    <label>Deskripsi Profil</label>
-                    <textarea name="description" class="form-control" rows="4"><?= htmlspecialchars($data_company['description'] ?? ''); ?></textarea>
+            
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Profil Perusahaan & Lokasi</h2>
                 </div>
 
-                <h3>Head Office</h3>
-                <div class="form-group">
-                    <label>Nama Gedung</label>
-                    <input type="text" name="ho_name" class="form-control" value="<?= htmlspecialchars($data_office['name'] ?? ''); ?>">
-                </div>
-                <div class="form-group">
-                    <label>Alamat Lengkap</label>
-                    <textarea name="ho_location" class="form-control"><?= htmlspecialchars($data_office['location'] ?? ''); ?></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Negara</label>
-                    <input type="text" name="ho_country" class="form-control" value="<?= htmlspecialchars($data_office['country'] ?? ''); ?>">
-                </div>
+                <form action="proses.php" method="POST" class="admin-form">
+                    
+                    <h3 style="margin: 20px 0 15px; color: #1b365d; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">🏢 Profil Perusahaan</h3>
+                    <div class="form-group">
+                        <label>Deskripsi Profil</label>
+                        <textarea name="description" class="form-control" rows="5" required><?= htmlspecialchars($data_company['description'] ?? ''); ?></textarea>
+                    </div>
 
-                <h3>Lokasi Cabang</h3>
-                <div class="form-group">
-                    <label>Deskripsi Lokasi</label>
-                    <textarea name="loc_description" class="form-control" rows="4"><?= htmlspecialchars($data_location['description'] ?? ''); ?></textarea>
-                </div>
+                    <h3 style="margin: 30px 0 15px; color: #1b365d; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">📍 Head Office</h3>
+                    <div class="form-group">
+                        <label>Nama Gedung</label>
+                        <input type="text" name="ho_name" class="form-control" value="<?= htmlspecialchars($data_office['name'] ?? ''); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Lengkap</label>
+                        <textarea name="ho_location" class="form-control" rows="3" required><?= htmlspecialchars($data_office['location'] ?? ''); ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Negara</label>
+                        <input type="text" name="ho_country" class="form-control" value="<?= htmlspecialchars($data_office['country'] ?? ''); ?>" required>
+                    </div>
 
-                <button type="submit" name="update" class="btn btn-primary">💾 Simpan Perubahan</button>
-            </form>
+                    <h3 style="margin: 30px 0 15px; color: #1b365d; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">🗺️ Lokasi Cabang / Pelayanan</h3>
+                    <div class="form-group">
+                        <label>Deskripsi Lokasi</label>
+                        <textarea name="loc_description" class="form-control" rows="4" required><?= htmlspecialchars($data_location['description'] ?? ''); ?></textarea>
+                    </div>
+
+                    <div class="form-action" style="margin-top: 40px;">
+                        <button type="submit" name="update" class="btn btn-primary">💾 Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
+    </main>
 
-        <script>
+    <script>
         var dropdowns = document.getElementsByClassName("dropdown-btn");
         for (var i = 0; i < dropdowns.length; i++) {
             dropdowns[i].addEventListener("click", function() {
@@ -98,7 +118,6 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
                 }
             });
         }
-        </script>
-    </main>
+    </script>
 </body>
 </html>
