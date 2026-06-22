@@ -10,7 +10,6 @@ if (isset($_POST['ubah_misi'])) {
         echo "<script>alert('Deskripsi misi tidak boleh kosong!'); window.location='edit_misi.php?id=$id';</script>";
         exit;
     }
-
     $sql = "UPDATE mission SET description='$description' WHERE id_mission='$id'";
     $query = mysqli_query($koneksi, $sql);
 
