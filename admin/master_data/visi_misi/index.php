@@ -118,10 +118,8 @@ $query_mission = mysqli_query($koneksi, $sql_mission);
                     </tbody>
                 </table>
             </div>
-
         </div>
     </main>
-
     <script>
         var dropdowns = document.getElementsByClassName("dropdown-btn");
         for (var i = 0; i < dropdowns.length; i++) {
