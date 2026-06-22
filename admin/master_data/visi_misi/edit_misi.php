@@ -92,10 +92,8 @@ if (!$data) {
                     </div>
                 </form>
             </div>
-
         </div>
     </main>
-
     <script>
         var dropdowns = document.getElementsByClassName("dropdown-btn");
         for (var i = 0; i < dropdowns.length; i++) {
