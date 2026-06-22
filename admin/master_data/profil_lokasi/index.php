@@ -30,7 +30,7 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
                     <li><a href="index.php" class="active">🏢 Profil & Lokasi</a></li>
                     <li><a href="../visi_misi/index.php">🎯 Visi & Misi</a></li>
                     <li><a href="../keunggulan/index.php">⭐ Keunggulan</a></li>
-                    <li><a href="../purchase_info/index.php">🛒 Info Pembelian</a></li>
+                    <li><a href="../info_pembelian/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
@@ -51,7 +51,7 @@ $data_location = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM locati
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">
-                <h3>Edit Profil & Lokasi</h3>
+                <h3>Master Data Profil & Lokasi</h3>
             </div>
             <div class="header-right">
                 <span>Welcome, <strong><?= htmlspecialchars($username ?? 'Admin'); ?></strong></span>

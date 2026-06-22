@@ -42,7 +42,7 @@ if (!$data) {
                     <li><a href="../profil_lokasi/index.php">🏢 Profil & Lokasi</a></li>
                     <li><a href="index.php" class="active">🎯 Visi & Misi</a></li>
                     <li><a href="../keunggulan/index.php">⭐ Keunggulan</a></li>
-                    <li><a href="../purchase_info/index.php">🛒 Info Pembelian</a></li>
+                    <li><a href="../info_pembelian/index.php">🛒 Info Pembelian</a></li>
                 </ul>
             </li>
 
@@ -60,7 +60,6 @@ if (!$data) {
         </div>
     </aside>
 
-    <!-- KONTEN UTAMA KANAN -->
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">

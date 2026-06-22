@@ -1,47 +1,54 @@
 <?php
-
 include "koneksi.php";
 
 if(isset($_POST['kirim'])){
 
-    $product_id = $_POST['product_id'];
-    $jumlah_bata = $_POST['jumlah_bata'];
+    $product_id = $_POST['product_id'] ?? '';
+    $product_quantity = isset($_POST['product_quantity']) ? floatval($_POST['product_quantity']) : 0;
+    $order_quantity = isset($_POST['order_quantity']) ? floatval($_POST['order_quantity']) : 0;
+    $customer_name = mysqli_real_escape_string($koneksi, trim($_POST['customer_name'] ?? ''));
+    $email = mysqli_real_escape_string($koneksi, trim($_POST['email'] ?? ''));
+    $company_name = mysqli_real_escape_string($koneksi, trim($_POST['company_name'] ?? ''));
+    if ($company_name == '') {
+        $company_name = '-';
+    }
 
-    $nama_pemesan = $_POST['nama_pemesan'];
-    $nama_toko = $_POST['nama_toko'];
-    $email = $_POST['email'];
+    if ($customer_name == '') {
+        echo "<script>alert('Nama pemesan wajib diisi!'); window.history.back();</script>";
+        exit;
+    }
+    if ($email == '') {
+        echo "<script>alert('Email wajib diisi!'); window.history.back();</script>";
+        exit;
+    }
+    if ($product_quantity <= 0 || $order_quantity <= 0) {
+        echo "<script>alert('Jumlah pesanan tidak boleh 0. Pastikan Anda sudah mengisi kalkulator volume!'); window.history.back();</script>";
+        exit;
+    }
 
-    $jumlah_pesanan = $_POST['jumlah_pesanan'];
-
-    $product = mysqli_query(
-        $koneksi,
-        "SELECT * FROM products WHERE id='$product_id'"
-    );
-
+    $product = mysqli_query($koneksi, "SELECT * FROM products WHERE id='$product_id'");
     $data = mysqli_fetch_array($product);
+    $size = $data['product_size'] ?? '';
 
-    $ukuran_bata = $data['ukuran'];
-
-    $sql = "INSERT INTO pesanan
+    $sql = "INSERT INTO orders
     (
         product_id,
-        ukuran_bata,
-        jumlah_bata,
-        nama_pemesan,
-        nama_toko,
+        size,
+        product_quantity,
+        customer_name,
+        company_name,
         email,
-        jumlah_pesanan
+        order_quantity
     )
-
     VALUES
     (
         '$product_id',
-        '$ukuran_bata',
-        '$jumlah_bata',
-        '$nama_pemesan',
-        '$nama_toko',
+        '$size',
+        '$product_quantity',
+        '$customer_name',
+        '$company_name',
         '$email',
-        '$jumlah_pesanan'
+        '$order_quantity'
     )";
 
     $query = mysqli_query($koneksi, $sql);
@@ -52,30 +59,25 @@ if(isset($_POST['kirim'])){
 
         $pesan =
         "Halo Duta Lite,%0A%0A".
-        "Nama: $nama_pemesan %0A".
-        "Perusahaan: $nama_toko %0A".
+        "Nama: $customer_name %0A".
+        "Perusahaan: $company_name %0A".
         "Email: $email %0A".
-        "Ukuran Bata: $ukuran_bata %0A".
-        "Jumlah Bata: $jumlah_bata pcs %0A".
-        "Jumlah Pesanan: $jumlah_pesanan Kubik";
+        "Ukuran Bata: $size %0A".
+        "Jumlah Bata: $product_quantity pcs %0A".
+        "Jumlah Pesanan: $order_quantity Kubik";
 
-        $urlWhatsApp =
-        "https://api.whatsapp.com/send?phone=$nomorWA&text=$pesan";
+        $urlWhatsApp = "https://api.whatsapp.com/send?phone=$nomorWA&text=$pesan";
 
         header("Location: $urlWhatsApp");
         exit;
 
-    }else{
-
+    } else {
         echo "
         <script>
-            alert('Pesanan gagal');
-            window.location='products.php';
+            alert('Pesanan gagal disimpan ke database. Error: " . mysqli_error($koneksi) . "');
+            window.history.back();
         </script>
         ";
-
     }
-
 }
-
 ?>

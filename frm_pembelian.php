@@ -1,7 +1,7 @@
 <?php include "koneksi.php"; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,24 +72,24 @@
                 <?php
 
                 $sql = "SELECT * FROM products";
-                $query = mysqli_query($conn, $sql);
+                $query = mysqli_query($$koneksi, $sql);
 
                 while($result = mysqli_fetch_array($query)){
 
                     $id = $result['id'];
-                    $nama_produk = $result['nama_produk'];
-                    $ukuran = $result['ukuran'];
-                    $harga = $result['harga'];
+                    $product_name = $result['product_name'];
+                    $product_size = $result['product_size'];
+                    $price = $result['price'];
 
                 ?>
 
                 <option value="<?= $id ?>">
 
-                    <?= $nama_produk ?>
+                    <?= $product_name ?>
                     -
-                    <?= $ukuran ?>
+                    <?= $product_size ?>
                     -
-                    Rp<?= number_format($harga,0,',','.') ?>
+                    Rp<?= number_format($price,0,',','.') ?>
 
                 </option>
 
@@ -107,7 +107,7 @@
 
             <input
                 type="number"
-                name="jumlah_bata"
+                name="product_quantity"
                 placeholder="Contoh: 1000"
                 required
             >
@@ -122,7 +122,7 @@
 
             <input
                 type="text"
-                name="nama_pemesan"
+                name="customer_name"
                 placeholder="Masukkan nama"
                 required
             >
@@ -131,7 +131,7 @@
 
             <input
                 type="text"
-                name="nama_toko"
+                name="company_name"
                 placeholder="Nama toko / perusahaan"
             >
 
@@ -149,7 +149,7 @@
             <input
                 type="number"
                 step="0.01"
-                name="jumlah_pesanan"
+                name="order_quantity"
                 placeholder="0.00"
                 required
             >
@@ -166,4 +166,3 @@
 
 </body>
 </html>
-
