@@ -7,7 +7,6 @@ if (isset($_POST['simpan_visi'])) {
 
     $sql = "UPDATE vision SET description='$description' WHERE id_vision=1";
     $query = mysqli_query($koneksi, $sql);
-
     if ($query) {
         echo "<script>alert('Data Visi berhasil diperbarui!'); window.location='index.php';</script>";
     } else {
