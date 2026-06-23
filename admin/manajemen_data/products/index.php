@@ -94,8 +94,9 @@ $query = mysqli_query($koneksi, $sql);
                             <td><strong><?= htmlspecialchars($product_name) ?></strong></td>
                             <td><?= htmlspecialchars($product_size) ?></td>
                             <td>Rp <?= number_format((float)$price, 0, ',', '.') ?></td>
-                            <td><?= htmlspecialchars($description) ?></td>
-                            <td><?= htmlspecialchars($image) ?></td>
+                            <td><?= htmlspecialchars($description) ?>
+                            <img src="../../../assets/<?= htmlspecialchars($image); ?>" alt="Gambar Produk" style="max-width: 150px; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 10px;">
+                            </td>
                             <td class="action-buttons">
                                 <a href="edit.php?id=<?= $id; ?>" class="btn-sm btn-edit">Edit</a>
                                 <a href="hapus.php?id=<?= $id; ?>" class="btn-sm btn-delete" onclick="return confirm('Yakin ingin menghapus ukuran <?= htmlspecialchars($product_size) ?>?')">Hapus</a>
