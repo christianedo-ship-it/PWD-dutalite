@@ -10,7 +10,7 @@ if (!$koneksi) {
     die("Yahh, koneksi ke database gagal: " . mysqli_connect_error());
 }
 
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_samesite', 'Strict');
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");
 ?>
