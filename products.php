@@ -87,30 +87,32 @@ include 'header.php';
                             <select
                                 id="selectUkuran"
                                 class="form-control"
-                                name="product_id"
+                                onchange="document.getElementById('realProductId').value = this.options[this.selectedIndex].getAttribute('data-id');"
                             >
 
                                 <option value="0" disabled selected>
                                     -- Pilih Ukuran Bata --
                                 </option>
 
-                                <option value="1" data-nama="7,5 x 60 x 20 cm">
+                                <option value="0.009" data-id="1" data-nama="7,5 x 60 x 20 cm">
                                     7,5 x 60 x 20 cm
                                 </option>
 
-                                <option value="2" data-nama="10 x 60 x 20 cm">
+                                <option value="0.012" data-id="2" data-nama="10 x 60 x 20 cm">
                                     10 x 60 x 20 cm
                                 </option>
 
-                                <option value="3" data-nama="12,5 x 60 x 20 cm">
+                                <option value="0.015" data-id="3" data-nama="12,5 x 60 x 20 cm">
                                     12,5 x 60 x 20 cm
                                 </option>
 
-                                <option value="4" data-nama="15 x 60 x 20 cm">
+                                <option value="0.018" data-id="4" data-nama="15 x 60 x 20 cm">
                                     15 x 60 x 20 cm
                                 </option>
 
                             </select>
+
+                            <input type="hidden" id="realProductId" name="product_id" value="">
 
                             <span class="input-hint">
                                 Pilih tipe ukuran yang ingin Anda pesan
@@ -142,7 +144,7 @@ include 'header.php';
                                 class="form-control"
                                 placeholder="Contoh: 1000"
                                 min="0"
-                                name="jumlah_bata"
+                                name="product_quantity"
                             >
 
                             <span class="input-hint">
@@ -176,7 +178,7 @@ include 'header.php';
                                     id="buyerName"
                                     class="form-control"
                                     placeholder="Masukkan nama"
-                                    name="nama_pemesan"
+                                    name="customer_name"
                                     required
                                 >
 
@@ -193,7 +195,7 @@ include 'header.php';
                                     id="buyerCompany"
                                     class="form-control"
                                     placeholder="Nama toko / perusahaan"
-                                    name="nama_toko"
+                                    name="company_name"
                                 >
 
                             </div>
@@ -249,7 +251,7 @@ include 'header.php';
                                 placeholder="0.00"
                                 step="0.01"
                                 min="0"
-                                name="jumlah_pesanan"
+                                name="order_quantity"
                             >
 
                             <span class="input-hint">
